@@ -1,0 +1,23 @@
+@host = http://localhost:3000
+
+### --- Add Log ---
+# @name addLog
+POST {{host}}/log
+Content-Type: application/json
+Accept: application/json
+
+{
+    "timestamp": "{{$datetime iso8601}}",
+    "user": "bob",
+    "action": "check-in"
+}
+
+### --- Get Logs ---
+# @name getLogs
+GET {{host}}/log
+Accept: application/json
+
+### --- Get Log ---
+# @name getLog
+GET {{host}}/log/{{addLog.response.body.$.id}}
+Accept: application/json
